@@ -6,27 +6,36 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
+import { getFrameSelector } from '../../../common/selector'
+import { useAppSelector } from '../../../State/Store'
+
 export const SelectFrame = () => {
-  const [age, setAge] = React.useState('')
+  const frames = useAppSelector(getFrameSelector)
+  const [frame, setFrame] = React.useState('')
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string)
+    setFrame(event.target.value as string)
   }
+  const menuItem = frames.map((item, index) => {
+    return (
+      <MenuItem key={index} value={item.name}>
+        {item.name}
+      </MenuItem>
+    )
+  })
 
   return (
-    <Box sx={{ minWidth: 120, maxWidth: 240, m: 2 }}>
+    <Box sx={{ minWidth: 120, maxWidth: 300, m: 2 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Material</InputLabel>
+        <InputLabel id="demo-simple-select-label">Frame</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Material"
+          value={frame}
+          label="Frame"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {menuItem}
         </Select>
       </FormControl>
     </Box>

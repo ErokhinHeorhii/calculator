@@ -6,31 +6,37 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
+import { getListSelector } from '../../../common/selector'
 import { useAppSelector } from '../../../State/Store'
 
 export const SelectListMaterial = () => {
-  const list = useAppSelector(state => state.data.filter(item => item.type === 'list'))
-  const [age, setAge] = React.useState('')
+  const list = useAppSelector(getListSelector)
+  const [itemPipe, setItemPipe] = React.useState('')
 
-  console.log(list)
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string)
+    setItemPipe(event.target.value as string)
   }
 
+  const menuItem = list.map((item, index) => {
+    return (
+      <MenuItem key={index} value={item.name}>
+        {item.name}; {item.material}
+      </MenuItem>
+    )
+  })
+
   return (
-    <Box sx={{ minWidth: 120, maxWidth: 240, m: 2 }}>
+    <Box sx={{ minWidth: 120, maxWidth: 300, m: 2 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Material</InputLabel>
+        <InputLabel id="demo-simple-select-label">List-Material</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Material"
+          value={itemPipe}
+          label="List-Material"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {menuItem}
         </Select>
       </FormControl>
     </Box>

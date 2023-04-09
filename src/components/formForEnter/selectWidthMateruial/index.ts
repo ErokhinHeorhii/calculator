@@ -1,1 +1,1 @@
-export * from './SelectWidthMaterial'
+export * from './SliderWidth'
