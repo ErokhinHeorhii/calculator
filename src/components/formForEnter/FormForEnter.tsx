@@ -3,6 +3,9 @@ import React from 'react'
 import { Button } from '@mui/material'
 import { useForm } from 'react-hook-form'
 
+import { getChosenDataAC } from '../../State/chosenDataReducer'
+import { useAppDispatch } from '../../State/Store'
+
 import { SelectFrame } from './selectFrame'
 import { SliderLength } from './selectLengthMateruial'
 import { SelectListMaterial } from './selectListMateruial'
@@ -18,10 +21,10 @@ type FormData = {
 }
 
 export const FormForEnter = () => {
+  const dispatch = useAppDispatch()
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -35,7 +38,7 @@ export const FormForEnter = () => {
 
   const onSubmit = (data: FormData) => {
     debugger
-    console.log('data', data)
+    dispatch(getChosenDataAC({ chosenData: data }))
   }
 
   return (
