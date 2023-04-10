@@ -4,18 +4,13 @@ import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
+import Select from '@mui/material/Select'
 
 import { getListSelector } from '../../../common/selector'
 import { useAppSelector } from '../../../State/Store'
 
-export const SelectListMaterial = () => {
+export const SelectListMaterial = ({ register, errors }: any) => {
   const list = useAppSelector(getListSelector)
-  const [itemPipe, setItemPipe] = React.useState('')
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setItemPipe(event.target.value as string)
-  }
 
   const menuItem = list.map((item, index) => {
     return (
@@ -28,13 +23,15 @@ export const SelectListMaterial = () => {
   return (
     <Box sx={{ minWidth: 120, maxWidth: 300, m: 2 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">List-Material</InputLabel>
+        <InputLabel id="demo-simple-select-label" aria-label="listMaterial">
+          {errors.listMaterial ? errors.listMaterial.message : 'List-Material'}
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={itemPipe}
-          label="List-Material"
-          onChange={handleChange}
+          label="listMaterial"
+          error={!!errors.listMaterial?.message}
+          {...register('listMaterial', { required: 'Required' })}
         >
           {menuItem}
         </Select>

@@ -11,7 +11,7 @@ function valuetext(value: number) {
   return `${value}m`
 }
 
-export const SliderWidth = () => {
+export const SliderWidth = ({ register }: any) => {
   const width = useAppSelector(getWidthSelector)
   const min = width.find(item => item.min)
   const max = width.find(item => item.max)
@@ -19,7 +19,7 @@ export const SliderWidth = () => {
   return (
     <Box sx={{ width: 300, m: 2, mt: 4 }}>
       <Slider
-        aria-label="Width"
+        aria-label="width"
         defaultValue={5}
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
@@ -27,6 +27,7 @@ export const SliderWidth = () => {
         marks
         min={min && min.min}
         max={max && max.max}
+        {...register('width', { required: true })}
       />
       <Typography>Width, m</Typography>
     </Box>

@@ -11,7 +11,7 @@ function valuetext(value: number) {
   return `${value}m`
 }
 
-export const SliderLength = () => {
+export const SliderLength = ({ register }: any) => {
   const length = useAppSelector(getLengthSelector)
   const min = length.find(item => item.min)
   const max = length.find(item => item.max)
@@ -19,7 +19,7 @@ export const SliderLength = () => {
   return (
     <Box sx={{ width: 300, m: 2, mt: 4 }}>
       <Slider
-        aria-label="Length"
+        aria-label="length"
         defaultValue={5}
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
@@ -27,6 +27,7 @@ export const SliderLength = () => {
         marks
         min={min && min.min}
         max={max && max.max}
+        {...register('length', { required: true })}
       />
       <Typography>Length, m</Typography>
     </Box>
