@@ -37,18 +37,21 @@ export const FormForEnter = () => {
   })
 
   const onSubmit = (data: FormData) => {
-    debugger
     dispatch(getChosenDataAC({ chosenData: data }))
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} style={{ width: '400px' }}>
       <SelectListMaterial register={register} errors={errors} />
       <SelectPipeMaterial register={register} errors={errors} />
       <SliderWidth register={register} />
       <SliderLength register={register} />
       <SelectFrame register={register} errors={errors} />
-      <Button type={'submit'} variant="outlined">
+      <Button
+        type={'submit'}
+        variant="outlined"
+        style={{ width: '55px', textAlign: 'center', marginLeft: '130px' }}
+      >
         Submit
       </Button>
     </form>

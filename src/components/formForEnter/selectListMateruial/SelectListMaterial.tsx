@@ -6,7 +6,7 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 
-import { getListSelector } from '../../../common/selector'
+import { getListSelector } from '../../../common/selectors'
 import { useAppSelector } from '../../../State/Store'
 
 export const SelectListMaterial = ({ register, errors }: any) => {
@@ -14,7 +14,7 @@ export const SelectListMaterial = ({ register, errors }: any) => {
 
   const menuItem = list.map((item, index) => {
     return (
-      <MenuItem key={index} value={item.name}>
+      <MenuItem key={index} value={item.name + ' ' + item.material}>
         {item.name}; {item.material}
       </MenuItem>
     )
@@ -30,6 +30,7 @@ export const SelectListMaterial = ({ register, errors }: any) => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="listMaterial"
+          defaultValue={''}
           error={!!errors.listMaterial?.message}
           {...register('listMaterial', { required: 'Required' })}
         >

@@ -4,7 +4,7 @@ import { Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 
-import { getLengthSelector } from '../../../common/selector'
+import { getLengthSelector } from '../../../common/selectors'
 import { useAppSelector } from '../../../State/Store'
 
 function valuetext(value: number) {
@@ -23,8 +23,7 @@ export const SliderLength = ({ register }: any) => {
         defaultValue={5}
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
-        step={1}
-        marks
+        step={0.2}
         min={min && min.min}
         max={max && max.max}
         {...register('length', { required: true })}

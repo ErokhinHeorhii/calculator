@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react'
 
 import './App.css'
+import { Container } from '@mui/material'
+
 import { FormForEnter } from './components/formForEnter/FormForEnter'
+import { TableResult } from './components/tableResult/TableResult'
 import { getConfig } from './services/getConfig'
 import { getData } from './services/getData'
 import { getConfigAC } from './State/configReducer'
@@ -14,11 +17,17 @@ function App() {
   useEffect(() => {
     getData().then(res => dispatch(getDataAC({ material: res })))
     getConfig().then(res => dispatch(getConfigAC({ config: res })))
-  }, [dispatch])
+  }, [])
 
   return (
     <div className="App">
-      <FormForEnter />
+      <Container sx={{ mt: 4 }}>
+        <FormForEnter />
+      </Container>
+      <Container sx={{ mt: 4 }}>
+        {' '}
+        <TableResult />
+      </Container>
     </div>
   )
 }

@@ -6,7 +6,7 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 
-import { getFrameSelector } from '../../../common/selector'
+import { getFrameSelector } from '../../../common/selectors'
 import { useAppSelector } from '../../../State/Store'
 
 export const SelectFrame = ({ register, errors }: any) => {
@@ -25,12 +25,13 @@ export const SelectFrame = ({ register, errors }: any) => {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
           {' '}
-          {errors.frame ? errors.frame.message : 'Frame'}
+          {errors.frame ? errors.frame.message : 'Frame '}
         </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="frame"
+          defaultValue={''}
           error={!!errors.frame?.message}
           {...register('frame', { required: 'Required' })}
         >

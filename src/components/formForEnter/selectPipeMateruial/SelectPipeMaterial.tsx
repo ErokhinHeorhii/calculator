@@ -6,16 +6,11 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 
-import { getPipeSelector } from '../../../common/selector'
+import { getPipeSelector } from '../../../common/selectors'
 import { useAppSelector } from '../../../State/Store'
 
 export const SelectPipeMaterial = ({ register, errors }: any) => {
   const pipies = useAppSelector(getPipeSelector)
-  // const [pipe, setPipe] = React.useState('')
-  //
-  // const handleChange = (event: SelectChangeEvent) => {
-  //   setPipe(event.target.value as string)
-  // }
   const menuItem = pipies.map((item, index) => {
     return (
       <MenuItem key={index} value={item.name}>
@@ -34,6 +29,7 @@ export const SelectPipeMaterial = ({ register, errors }: any) => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="pipeMaterial"
+          defaultValue={''}
           error={!!errors.pipeMaterial?.message}
           {...register('pipeMaterial', { required: 'Required' })}
         >
