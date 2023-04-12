@@ -21,4 +21,4 @@ const slice = createSlice({
 })
 
 export const { getChosenDataAC } = slice.actions
-export const ChosenDataReducer = slice.reducer
+export const chosenDataReducer = slice.reducer

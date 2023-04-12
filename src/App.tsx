@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import './App.css'
 import { Container } from '@mui/material'
 
 import { FormForEnter } from './components/formForEnter/FormForEnter'
@@ -10,6 +9,7 @@ import { getData } from './services/getData'
 import { getConfigAC } from './State/configReducer'
 import { getDataAC } from './State/dataReducer'
 import { useAppDispatch } from './State/Store'
+import './App.css'
 
 function App() {
   const dispatch = useAppDispatch()
